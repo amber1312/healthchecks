@@ -42,7 +42,7 @@ jobs:
       - name: Verify scan output
         run: |
           test -s snyk-result.json
-          jq -r '[.[]? // .] | map(.packageManager) | join(",")' snyk-result.json
+          jq -r '.packageManager // empty' snyk-result.json
 
       - uses: actions/upload-artifact@v4
         with:
